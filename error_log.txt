@@ -1,0 +1,3 @@
+qt.qpa.fonts: Populating font family aliases took 448 ms. Replace uses of missing font family "SF Pro Text" with one that exists to avoid this cost. 
+Запуск Centaur Calibration Assistant (PySide6)
+Python: 3.8.8 | OS: Darwin 24.6.0
