@@ -1,0 +1,78 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # кнопка ручного запуска на GitHub
+
+jobs:
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build EXE
+        run: |
+          pyinstaller `
+            --name "Centaur Calibration Assistant" `
+            --windowed `
+            --onedir `
+            --noconfirm `
+            --add-data "languages;languages" `
+            --add-data "config;config" `
+            --hidden-import PySide6.QtSvg `
+            --hidden-import PySide6.QtPrintSupport `
+            --hidden-import matplotlib.backends.backend_qtagg `
+            main.py
+
+      - name: Upload EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: Centaur-Windows
+          path: dist/
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build APP
+        run: |
+          pyinstaller \
+            --name "Centaur Calibration Assistant" \
+            --windowed \
+            --onedir \
+            --noconfirm \
+            --add-data "languages:languages" \
+            --add-data "config:config" \
+            --hidden-import PySide6.QtSvg \
+            --hidden-import PySide6.QtPrintSupport \
+            --hidden-import matplotlib.backends.backend_qtagg \
+            main.py
+
+      - name: Upload APP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Centaur-macOS
+          path: dist/

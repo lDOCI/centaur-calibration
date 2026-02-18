@@ -19,16 +19,16 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.services.settings import SettingsService
-from centaur_app.state import AppState, BedWorkspace
-from centaur_app.ui.dialogs import AuthorDialog, VisualRecommendationsDialog
-from centaur_app.ui.views.input_shaper import InputShaperView
-from centaur_app.ui.views.leveling import BedLevelingView
-from centaur_app.ui.views.settings import SettingsView
-from centaur_app.ui.views.ssh_tab import SSHTab
-from centaur_app.ui.widgets import AnimatedStackedWidget, SideMenu, TopBar
-from centaur_app.ui.theme import apply_theme
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.services.settings import SettingsService
+from flashforge_app.state import AppState, BedWorkspace
+from flashforge_app.ui.dialogs import AuthorDialog, VisualRecommendationsDialog
+from flashforge_app.ui.views.input_shaper import InputShaperView
+from flashforge_app.ui.views.leveling import BedLevelingView
+from flashforge_app.ui.views.settings import SettingsView
+from flashforge_app.ui.views.ssh_tab import SSHTab
+from flashforge_app.ui.widgets import AnimatedStackedWidget, SideMenu, TopBar
+from flashforge_app.ui.theme import apply_theme
 
 
 class MainWindow(QMainWindow):

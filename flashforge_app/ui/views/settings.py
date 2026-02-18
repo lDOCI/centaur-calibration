@@ -19,9 +19,9 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtWidgets import QButtonGroup
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.services.settings import ApplicationSettings, SettingsService, ThermalPreset
-from centaur_app.state import AppState
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.services.settings import ApplicationSettings, SettingsService, ThermalPreset
+from flashforge_app.state import AppState
 
 GITHUB_RELEASE_URL = "https://github.com/lDOCI/Centaur-Calibration-Assistant-v2/releases/latest"
 

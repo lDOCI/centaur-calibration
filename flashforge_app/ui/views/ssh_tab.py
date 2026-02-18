@@ -20,8 +20,8 @@ from PySide6.QtWidgets import (
 import paramiko
 from scp import SCPClient
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.state import AppState
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.state import AppState
 
 
 class SSHTab(QWidget):

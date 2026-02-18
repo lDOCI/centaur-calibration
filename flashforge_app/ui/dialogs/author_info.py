@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QDialog, QDialogButtonBox, QLabel, QVBoxLayout
 
-from centaur_app.services.localization import LocalizationService
+from flashforge_app.services.localization import LocalizationService
 
 
 class AuthorDialog(QDialog):

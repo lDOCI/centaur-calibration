@@ -13,7 +13,7 @@ import sys
 from importlib.util import find_spec
 from pathlib import Path
 
-from centaur_app import create_app
+from flashforge_app import create_app
 
 
 REQUIRED_PACKAGES = {

@@ -38,8 +38,8 @@ from PySide6.QtWidgets import (
 from calibration.hardware.screw import RotationDirection
 from calibration.workflow import StageAction, StageResult, WorkflowData
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.services.settings import ApplicationSettings
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.services.settings import ApplicationSettings
 from visualization.bed_mesh.animated_recommendations import (
     ScrewAdjustmentVisualizer,
     TapeCell,

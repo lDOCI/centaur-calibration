@@ -7,11 +7,11 @@ from typing import Optional
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.services.settings import SettingsService
-from centaur_app.state import AppState
-from centaur_app.ui.main_window import MainWindow
-from centaur_app.ui.theme import apply_theme
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.services.settings import SettingsService
+from flashforge_app.state import AppState
+from flashforge_app.ui.main_window import MainWindow
+from flashforge_app.ui.theme import apply_theme
 
 
 class CentaurApplication:

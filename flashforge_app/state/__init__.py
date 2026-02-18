@@ -17,7 +17,7 @@ from calibration.hardware.bed import Bed, BedConfig
 from calibration.workflow import WorkflowData, compute_workflow
 from data_processing.measurement_parser import KlipperMeshParser, MeshData
 
-from centaur_app.services.settings import ApplicationSettings, SettingsService
+from flashforge_app.services.settings import ApplicationSettings, SettingsService
 
 
 @dataclass

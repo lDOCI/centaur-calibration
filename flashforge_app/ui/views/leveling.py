@@ -20,9 +20,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.state import AppState, BedWorkspace
-from centaur_app.ui.widgets import CardWidget
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.state import AppState, BedWorkspace
+from flashforge_app.ui.widgets import CardWidget
 from visualization.bed_mesh.heatmap_2d import BedMeshHeatmap
 from visualization.bed_mesh.surface_3d import BedMesh3D
 

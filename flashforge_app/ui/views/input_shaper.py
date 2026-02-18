@@ -32,8 +32,8 @@ if str(BASE_ANALYSIS / "extras") not in sys.path:
 import calibrate_shaper  # type: ignore  # noqa: E402
 import shaper_calibrate  # type: ignore  # noqa: E402
 
-from centaur_app.services.localization import LocalizationService
-from centaur_app.state import AppState
+from flashforge_app.services.localization import LocalizationService
+from flashforge_app.state import AppState
 
 
 class _AxisPlot(QFrame):
