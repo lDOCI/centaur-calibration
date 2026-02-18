@@ -7,8 +7,62 @@ on:
 
 jobs:
 
+  check-imports:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Check all imports
+        run: |
+          python3 -c "
+          import sys, os
+          sys.path.insert(0, '.')
+          errors = []
+          modules = [
+              'data_processing.measurement_parser',
+              'calibration.algorithms.deviation_analyzer',
+              'calibration.algorithms.screw_solver',
+              'calibration.algorithms.tape_calculator',
+              'calibration.hardware.bed',
+              'calibration.workflow',
+              'input_shaper.analysis.calibrate_shaper',
+              'visualization.bed_mesh.heatmap_2d',
+              'visualization.bed_mesh.surface_3d',
+              'flashforge_app.services.localization',
+              'flashforge_app.services.settings',
+              'flashforge_app.state',
+          ]
+          for m in modules:
+              try:
+                  __import__(m)
+                  print(f'OK  {m}')
+              except Exception as e:
+                  print(f'ERR {m}: {e}')
+                  errors.append(m)
+          if errors:
+              print(f'\nFailed: {errors}')
+              sys.exit(1)
+          print('\nAll imports OK')
+          "
+      - name: Test parser on sample config
+        run: |
+          python3 -c "
+          import sys
+          sys.path.insert(0, '.')
+          from data_processing.measurement_parser import FlashforgeMeshParser
+          sample = open('$(find . -name "*.cfg" | head -1)').read() if __import__('glob').glob('**/*.cfg', recursive=True) else ''
+          p = FlashforgeMeshParser()
+          print('Parser instantiated OK')
+          "
+
   build-windows:
     runs-on: windows-latest
+    needs: check-imports
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,9 +81,15 @@ jobs:
             --noconfirm `
             --add-data "languages;languages" `
             --add-data "config;config" `
+            --add-data "input_shaper;input_shaper" `
+            --add-data "calibration;calibration" `
+            --add-data "data_processing;data_processing" `
+            --add-data "visualization;visualization" `
             --hidden-import PySide6.QtSvg `
             --hidden-import PySide6.QtPrintSupport `
             --hidden-import matplotlib.backends.backend_qtagg `
+            --hidden-import calibrate_shaper `
+            --paths "." `
             main.py
       - uses: actions/upload-artifact@v4
         with:
@@ -38,6 +98,7 @@ jobs:
 
   build-macos:
     runs-on: macos-latest
+    needs: check-imports
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -56,9 +117,15 @@ jobs:
             --noconfirm \
             --add-data "languages:languages" \
             --add-data "config:config" \
+            --add-data "input_shaper:input_shaper" \
+            --add-data "calibration:calibration" \
+            --add-data "data_processing:data_processing" \
+            --add-data "visualization:visualization" \
             --hidden-import PySide6.QtSvg \
             --hidden-import PySide6.QtPrintSupport \
             --hidden-import matplotlib.backends.backend_qtagg \
+            --hidden-import calibrate_shaper \
+            --paths "." \
             main.py
       - uses: actions/upload-artifact@v4
         with:
