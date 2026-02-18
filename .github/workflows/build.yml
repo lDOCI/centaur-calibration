@@ -33,9 +33,6 @@ jobs:
               'input_shaper.analysis.calibrate_shaper',
               'visualization.bed_mesh.heatmap_2d',
               'visualization.bed_mesh.surface_3d',
-              'flashforge_app.services.localization',
-              'flashforge_app.services.settings',
-              'flashforge_app.state',
           ]
           for m in modules:
               try:
