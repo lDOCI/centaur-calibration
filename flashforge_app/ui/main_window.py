@@ -237,6 +237,9 @@ class MainWindow(QMainWindow):
             self._top_bar.set_status(tr("neo_ui.top_bar.status.error"))
             return
 
+        print(f'DEBUG loaded profiles: {list(self.app_state.profiles.keys())}')
+        print(f'DEBUG active: {self.app_state.active_profile_name}')
+        print(f'DEBUG mesh shape: {workspace.mesh.matrix.shape}')
         self.bed_view.set_workspace(workspace)
         self.bed_view._update_profile_combo()
         self._top_bar.set_status(tr("neo_ui.top_bar.status.loaded").format(file=path.name))

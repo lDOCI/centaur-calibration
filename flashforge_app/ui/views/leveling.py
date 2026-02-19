@@ -439,7 +439,10 @@ class BedLevelingView(QWidget):
 
     def _on_profile_changed(self, name: str) -> None:
         """Вызывается при выборе другой карты в комбобоксе."""
-        if not name or name == self.app_state.active_profile_name:
+        if not name:
+            return
+        # Если это просто обновление комбобокса после загрузки файла — не переключаем
+        if name == self.app_state.active_profile_name:
             return
         workspace = self.app_state.switch_profile(name)
         if workspace:
