@@ -29,7 +29,17 @@ class LocalizationService:
     """
 
     def __init__(self, languages_dir: Path | str = Path("languages"), default_language: str = "en") -> None:
-        self._languages_dir = Path(languages_dir)
+        import sys, os
+        # PyInstaller распаковывает файлы в sys._MEIPASS
+        if hasattr(sys, '_MEIPASS'):
+            base = Path(sys._MEIPASS)
+        else:
+            base = Path(__file__).parent.parent.parent
+        provided = Path(languages_dir)
+        if provided.is_absolute() and provided.exists():
+            self._languages_dir = provided
+        else:
+            self._languages_dir = base / "languages"
         self._default_language = default_language
         self._languages: Dict[str, LanguageDefinition] = {}
         self._current_language: str = default_language
