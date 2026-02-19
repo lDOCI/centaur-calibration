@@ -89,12 +89,12 @@ _MESH_PREFIXES: Tuple[str, ...] = (
 )
 
 
-class CentaurMeshParser:
+class FlashforgeMeshParser:
     """
     Парсер конфигурационного файла Centaur (Klipper-стиль, без #*#).
 
     Пример использования:
-        parser = CentaurMeshParser()
+        parser = FlashforgeMeshParser()
         profiles = parser.parse_config_file(content)   # Dict[str, MeshData]
 
         # Список имён карт для отображения в UI:
@@ -286,7 +286,7 @@ class CentaurMeshParser:
             )
 
         except Exception as e:
-            print(f"[CentaurMeshParser] Ошибка парсинга профиля '{profile_name}': {e}")
+            print(f"[FlashforgeMeshParser] Ошибка парсинга профиля '{profile_name}': {e}")
             return None
 
     @staticmethod
@@ -355,7 +355,7 @@ class CentaurMeshParser:
 # ───────────────────────────────────────────────────────────
 #  Обратная совместимость — старое имя класса
 # ───────────────────────────────────────────────────────────
-KlipperMeshParser = CentaurMeshParser
+KlipperMeshParser = FlashforgeMeshParser
 
 
 if __name__ == "__main__":
@@ -369,7 +369,7 @@ if __name__ == "__main__":
     with open(cfg_path, encoding="utf-8", errors="replace") as f:
         cfg_content = f.read()
 
-    p = CentaurMeshParser()
+    p = FlashforgeMeshParser()
     found = p.parse_config_file(cfg_content)
 
     if not found:
